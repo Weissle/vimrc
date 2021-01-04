@@ -1,12 +1,27 @@
 # vimrc
 my vimrc
 
-Need to do:  
+Additional Action:
+```
+#After coc-tabnine installed
+:CocCommand
+choose tabnine.openConfig
+set "ignore_all_lsp" : true.
+```
+## Install CTag
+https://github.com/universal-ctags/ctags  
 
-:CocInstall coc-json coc-tsserver  
+## CTag for STL
+```
+#Go to /usr/include/c++  maybe different for various os
+ctags -R --c++-kinds=+p --fields=+iaS --extras=+q ${STL_FOLDER}
+mv tags stl.tags
+```
 
-:CocInstall coc-tabnine  
+## CTag for ROS
 
-Run :CocCommand to open commands list.  
-tabnine.openConfig: open config file of TabNine.  
-Note: to make coc.nvim works better with TabNine, add "ignore_all_lsp": true to config file of TabNine.  
+```
+#Go to /usr/include/c++  maybe different for various os
+ctags -R --c++-kinds=+p --fields=+iaS --extras=+q ${ROS_FOLDER}
+mv tags ros.tags
+```
