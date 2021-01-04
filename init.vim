@@ -16,8 +16,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'luochen1990/rainbow'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
-Plug 'ludovicchabant/vim-gutentags'
-"Plug 'taketwo/vim-ros'
 Plug 'dominikduda/vim_current_word'
 Plug 'tomasr/molokai'
 call plug#end()
@@ -39,31 +37,37 @@ hi Normal guibg=NONE ctermbg=NONE
 
 
 "------------ gutentags --------------------
+if executable('ctags')
 
-" gutentags搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归 "
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
+	call plug#begin('~/.vim/plugged')
+		Plug 'ludovicchabant/vim-gutentags'
+	call plug#end()
+	" gutentags搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归 "
+	let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
 
-" 所生成的数据文件的名称 "
-let g:gutentags_ctags_tagfile = '.tags'
+	" 所生成的数据文件的名称 "
+	let g:gutentags_ctags_tagfile = '.tags'
 
-" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录 "
-let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir = s:vim_tags
-" 检测 ~/.cache/tags 不存在就新建 "
-if !isdirectory(s:vim_tags)
-   silent! call mkdir(s:vim_tags, 'p')
+	" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录 "
+	let s:vim_tags = expand('~/.cache/tags')
+	let g:gutentags_cache_dir = s:vim_tags
+	" 检测 ~/.cache/tags 不存在就新建 "
+	if !isdirectory(s:vim_tags)
+	   silent! call mkdir(s:vim_tags, 'p')
+	endif
+
+	" 配置 ctags 的参数 "
+	let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+	let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
+	let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+
+	"For C++ STL
+	set tags+=/usr/include/c++/stl.tags
+	"For C++ ROS
+	set tags+=/opt/ros/ros.tags
+
 endif
-
-" 配置 ctags 的参数 "
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+pxI']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-
-
-"For C++ STL
-set tags+=/usr/include/c++/stl.tags
-"For C++ ROS
-set tags+=/opt/ros/ros.tags
 "---------------------------------------------------------------------------
 
 "-------------auto completion ---------------------------------------------
@@ -79,18 +83,11 @@ inoremap <silent><expr> <c-space> coc#refresh()
 inoremap <expr> \ ((pumvisible())? ("\<C-e>"):("\\"))
 inoremap <expr> <TAB> ((pumvisible())? ("\<C-y>"):("\<TAB>"))
 inoremap <expr> <Enter> ((pumvisible())? ("\<C-e>\<Enter>"):("\<CR>"))
-"inoremap ' ''<ESC>i
-"inoremap  ""<ESC>i
-"inoremap ( ()<ESC>i
-"inoremap [ []<ESC>i
 inoremap { {<Enter>}<ESC>O
 "inoremap < <><ESC>i
 
 
 "---------------------------------------------------------------------------
-
-
-
 
 "----------- nerd tree ----------------------
 nnoremap <C-n> :NERDTreeToggle<CR>
@@ -113,5 +110,5 @@ let g:vim_current_word#highlight_twins = 1
 " The word under cursor:
 let g:vim_current_word#highlight_current_word = 0
 
-
 "---------------------------------------------------------------------------
+
