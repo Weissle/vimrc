@@ -7,6 +7,7 @@ set tabstop=4
 set shiftwidth=4
 set nobackup
 set nowritebackup
+set clipboard+=unnamedplus
 
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch':'release'}
@@ -17,7 +18,10 @@ Plug 'luochen1990/rainbow'
 Plug 'scrooloose/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'dominikduda/vim_current_word'
-Plug 'tomasr/molokai'
+Plug 'flazz/vim-colorschemes'
+if executable('ctags')
+	Plug 'ludovicchabant/vim-gutentags'
+endif
 call plug#end()
 
 " ---------coc plugin-------------
@@ -29,19 +33,15 @@ let g:rainbow_active = 1
 " -------------------------------
 
 " ------------ color scheme --------
-"set termguicolors
-colorscheme molokai
+set termguicolors
+colorscheme gruvbox
 let g:molokai_original = 1
-hi Normal guibg=NONE ctermbg=NONE
+"hi Normal guibg=NONE ctermbg=NONE
 "----------------------------------------
-
 
 "------------ gutentags --------------------
 if executable('ctags')
 
-	call plug#begin('~/.vim/plugged')
-		Plug 'ludovicchabant/vim-gutentags'
-	call plug#end()
 	" gutentags搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归 "
 	let g:gutentags_project_root = ['.root', '.svn', '.git', '.project']
 
@@ -76,8 +76,8 @@ endif
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " 自动补全快捷键修改
-"inoremap <expr> <C-i> ((pumvisible())? ("\<C-p>"):("\<C-"i>"))
-"inoremap <expr> <C-k> ((pumvisible())? ("\<C-n>"):("k"))
+inoremap <expr> <A-i> ((pumvisible())? ("\<C-p>"):(""))
+inoremap <expr> <A-k> ((pumvisible())? ("\<C-n>"):(""))
 "inoremap <expr> [ ((pumvisible())? ("\<C-p>"):("["))
 "inoremap <expr> ] ((pumvisible())? ("\<C-n>"):("]"))
 inoremap <expr> \ ((pumvisible())? ("\<C-e>"):("\\"))
@@ -112,3 +112,7 @@ let g:vim_current_word#highlight_current_word = 0
 
 "---------------------------------------------------------------------------
 
+"-----------------------other -------------------------------------------------
+inoremap <C-o> <ESC>o
+"
+"------------------------------------------------------------------------
