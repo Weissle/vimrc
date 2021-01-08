@@ -76,8 +76,8 @@ endif
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " 自动补全快捷键修改
-inoremap <expr> <A-i> ((pumvisible())? ("\<C-p>"):(""))
-inoremap <expr> <A-k> ((pumvisible())? ("\<C-n>"):(""))
+inoremap <expr> <A-k> ((pumvisible())? ("\<C-p>"):(""))
+inoremap <expr> <A-j> ((pumvisible())? ("\<C-n>"):(""))
 "inoremap <expr> [ ((pumvisible())? ("\<C-p>"):("["))
 "inoremap <expr> ] ((pumvisible())? ("\<C-n>"):("]"))
 inoremap <expr> \ ((pumvisible())? ("\<C-e>"):("\\"))
@@ -113,6 +113,7 @@ let g:vim_current_word#highlight_current_word = 0
 "---------------------------------------------------------------------------
 
 "-----------------------other -------------------------------------------------
-inoremap <C-o> <ESC>o
-"
+inoremap \nn <ESC>o
+"nnoremap <C-'> o<ESC>
 "------------------------------------------------------------------------
+
