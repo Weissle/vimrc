@@ -3,12 +3,13 @@ set directory=~/.swap
 set nocp
 set nu
 syntax on
+set ignorecase smartcase
+set wrapscan
 set tabstop=4
 set shiftwidth=4
 set nobackup
 set nowritebackup
 set clipboard+=unnamedplus
-
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'Yggdroot/indentLine'
@@ -35,7 +36,6 @@ let g:rainbow_active = 1
 " ------------ color scheme --------
 set termguicolors
 colorscheme gruvbox
-let g:molokai_original = 1
 "hi Normal guibg=NONE ctermbg=NONE
 "----------------------------------------
 
@@ -67,6 +67,7 @@ if executable('ctags')
 	"For C++ ROS
 	set tags+=/opt/ros/ros.tags
 	set statusline+=%{gutentags#statusline()}
+	let g:gutentags_defined_advanced_commands = 1
 endif
 "---------------------------------------------------------------------------
 
