@@ -20,6 +20,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'jiangmiao/auto-pairs'
 Plug 'dominikduda/vim_current_word'
 Plug 'flazz/vim-colorschemes'
+Plug 'ctrlpvim/ctrlp.vim'
 if executable('ctags')
 	Plug 'ludovicchabant/vim-gutentags'
 endif
@@ -27,7 +28,7 @@ call plug#end()
 
 " ---------coc plugin-------------
 "let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-clangd','coc-python','coc-highlight']
-let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-highlight','coc-python','coc-tabnine','coc-xml','coc-yaml','coc-clangd']
+let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-highlight','coc-pyright','coc-tabnine','coc-xml','coc-yaml','coc-clangd']
 "  ----------------------------
 " -------- enable rainbow --------
 let g:rainbow_active = 1
@@ -92,7 +93,7 @@ inoremap { {<Enter>}<ESC>O
 
 "----------- nerd tree ----------------------
 nnoremap <C-n> :NERDTreeToggle<CR>
-
+let g:NERDTreeWinPos = "right"
 "---------------------------------------------------------------------------
 
 " jj 退出 insert mode
