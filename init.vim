@@ -66,7 +66,7 @@ if executable('ctags')
 	set tags+=/usr/include/c++/stl.tags
 	"For C++ ROS
 	set tags+=/opt/ros/ros.tags
-
+	set statusline+=%{gutentags#statusline()}
 endif
 "---------------------------------------------------------------------------
 

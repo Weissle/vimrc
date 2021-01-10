@@ -25,3 +25,8 @@ mv tags stl.tags
 ctags -R --c++-kinds=+p --fields=+iaS --extras=+q ${ROS_FOLDER}
 mv tags ros.tags
 ```
+
+## Enable system clipboard
+```
+sudo apt install xclip
+```
