@@ -21,6 +21,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'dominikduda/vim_current_word'
 Plug 'flazz/vim-colorschemes'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
 if executable('ctags')
 	Plug 'ludovicchabant/vim-gutentags'
 endif
@@ -37,7 +38,8 @@ let g:rainbow_active = 1
 " ------------ color scheme --------
 set termguicolors
 colorscheme gruvbox
-"hi Normal guibg=NONE ctermbg=NONE
+let g:gruvbox_contrast_light="medium"
+set bg=dark
 "----------------------------------------
 
 "------------ gutentags --------------------
@@ -101,7 +103,15 @@ inoremap jj <Esc>
 
 " 函数跳转
 map <c-]> g<c-]>
-
+inoremap oo <Esc>o
+inoremap OO <Esc>O
+inoremap AA <Esc>A
+inoremap II <Esc>I
+"inoremap <C-h> <C-O>h
+inoremap <C-h> <Esc>i
+inoremap <C-j> <C-O>j
+inoremap <C-k> <C-O>k
+inoremap <C-l> <Esc>la
 " 取消搜索的高亮（一次）
 nnoremap <F3> :noh<CR>
 "--------------hightlight current words
