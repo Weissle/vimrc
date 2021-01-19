@@ -41,6 +41,10 @@ colorscheme gruvbox
 let g:gruvbox_contrast_light="medium"
 set bg=dark
 "----------------------------------------
+"------------auto-pairs
+"
+let g:AutoPairsMapCh = 0
+"----------------------------------------
 
 "------------ gutentags --------------------
 if executable('ctags')
@@ -107,11 +111,10 @@ inoremap oo <Esc>o
 inoremap OO <Esc>O
 inoremap AA <Esc>A
 inoremap II <Esc>I
-"inoremap <C-h> <C-O>h
-inoremap <C-h> <Esc>i
+inoremap <C-h> <C-O>h
 inoremap <C-j> <C-O>j
 inoremap <C-k> <C-O>k
-inoremap <C-l> <Esc>la
+inoremap <C-l> <ESC>la
 " 取消搜索的高亮（一次）
 nnoremap <F3> :noh<CR>
 "--------------hightlight current words
