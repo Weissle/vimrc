@@ -10,6 +10,8 @@ set shiftwidth=4
 set nobackup
 set nowritebackup
 set clipboard+=unnamedplus
+set ff=unix
+set cursorline
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'Yggdroot/indentLine'
@@ -119,12 +121,7 @@ inoremap <C-l> <ESC>la
 nnoremap <F3> :noh<CR>
 "--------------hightlight current words
 
-let g:vim_current_word#enable = 1
-" Twins of word under cursor:
-let g:vim_current_word#highlight_twins = 1
-" The word under cursor:
 let g:vim_current_word#highlight_current_word = 0
-
 "---------------------------------------------------------------------------
 
 "-----------------------other -------------------------------------------------
