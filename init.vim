@@ -19,16 +19,16 @@ Plug 'vim-airline/vim-airline'
 Plug 'scrooloose/nerdtree'
 Plug 'luochen1990/rainbow'
 Plug 'scrooloose/nerdcommenter'
-Plug 'jiangmiao/auto-pairs'
 Plug 'dominikduda/vim_current_word'
 Plug 'flazz/vim-colorschemes'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 if executable('ctags')
 	Plug 'ludovicchabant/vim-gutentags'
 endif
 call plug#end()
-
 " ---------coc plugin-------------
 "let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-clangd','coc-python','coc-highlight']
 let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-highlight','coc-pyright','coc-tabnine','coc-xml','coc-yaml','coc-clangd']
@@ -36,7 +36,6 @@ let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-highlight','coc-py
 " -------- enable rainbow --------
 let g:rainbow_active = 1
 " -------------------------------
-
 " ------------ color scheme --------
 set termguicolors
 colorscheme gruvbox
@@ -45,8 +44,10 @@ set bg=dark
 "----------------------------------------
 "------------auto-pairs
 "
+let g:AutoPairs={'(':')', '[':']',"'":"'",'"':'"', "`":"`", '```':'`````', '"""':'"""""', "'''":"'''''"}
 let g:AutoPairsMapCh = 0
 "----------------------------------------
+
 
 "------------ gutentags --------------------
 if executable('ctags')
@@ -88,14 +89,10 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " 自动补全快捷键修改
 inoremap <expr> <A-k> ((pumvisible())? ("\<C-p>"):(""))
 inoremap <expr> <A-j> ((pumvisible())? ("\<C-n>"):(""))
-"inoremap <expr> [ ((pumvisible())? ("\<C-p>"):("["))
-"inoremap <expr> ] ((pumvisible())? ("\<C-n>"):("]"))
 inoremap <expr> \ ((pumvisible())? ("\<C-e>"):("\\"))
 inoremap <expr> <TAB> ((pumvisible())? ("\<C-y>"):("\<TAB>"))
 inoremap <expr> <Enter> ((pumvisible())? ("\<C-e>\<Enter>"):("\<CR>"))
 inoremap { {<Enter>}<ESC>O
-"inoremap < <><ESC>i
-
 
 "---------------------------------------------------------------------------
 
@@ -120,7 +117,6 @@ inoremap <C-l> <ESC>la
 " 取消搜索的高亮（一次）
 nnoremap <F3> :noh<CR>
 "--------------hightlight current words
-
 let g:vim_current_word#highlight_current_word = 0
 "---------------------------------------------------------------------------
 
