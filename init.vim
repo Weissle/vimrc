@@ -26,6 +26,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'mhinz/vim-startify'
 if executable('ctags')
 	Plug 'ludovicchabant/vim-gutentags'
 endif
