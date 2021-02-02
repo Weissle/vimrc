@@ -30,7 +30,7 @@ mkdir ${STORE_PATH}/bin -p
 cd ${STORE_PATH}
 
 if [ ! -f "${STORE_PATH}/bin/clangd" ]; then
-	if [ $(which clangd) != "" ]; then
+	if [ "$(which clangd)" != "" ]; then
 		ln -s $(which clangd) ~/.local/myvim/bin/clangd
 	else
 		echo "Installing clangd"
@@ -60,5 +60,10 @@ if [ ! -f "${STORE_PATH}/bin/node" -o ! -f "${STORE_PATH}/bin/npm" ]; then
 		ln -s $NODE_BINS ${STORE_PATH}/bin/.
 	fi
 fi
-
-echo "export PATH=\"\$PATH:~/.local/myvim/bin\"" >> ~/.bashrc
+USER_NAME=$(whoami)
+echo $USER_NAME
+if [ "$USER_NAME" !=  "root" ] ; then
+	echo "export PATH=\"\$PATH:/home/$USER_NAME/.local/myvim/bin\"" >> ~/.bashrc
+else
+	echo "export PATH=\"\$PATH:/root/.local/myvim/bin\"" >> ~/.bashrc
+fi

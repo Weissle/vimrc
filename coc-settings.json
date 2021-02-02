@@ -1,7 +1,6 @@
 {
   "suggest.noselect": false,
-  "clangd.path": "~/.local/myvim/bin/clangd",
-  "suggest.maxCompleteItemCount": 20,
-  "npm.binPath": "~/.local/myvim/bin/npm"
+  "clangd.path": "clangd",
+  "suggest.maxCompleteItemCount": 20
 }
 
