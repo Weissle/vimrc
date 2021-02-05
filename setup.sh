@@ -4,6 +4,7 @@ echo "This script is for neovim and work well on ubuntu, maybe it can work as we
 STORE_PATH_BASE=.local/myvim
 STORE_PATH="$HOME/$STORE_PATH_BASE"
 NODEJS_URL="https://npm.taobao.org/mirrors/node/v14.15.4/node-v14.15.4-linux-x64.tar.xz"
+CLANGD_URL="https://github.com/clangd/clangd/releases/download/11.0.0/clangd-linux-11.0.0.zip"
 FORCE_CLANGD=false
 FORCE_NODEJS=false
 QUIET=false
@@ -65,15 +66,9 @@ if [ ! -f "${STORE_PATH}/bin/clangd" ]; then
 		ln -s "$(which clangd)" ~/.local/myvim/bin/clangd
 	else
 		echo "Installing clangd"
-		CLANGD_URL=$(curl -s https://api.github.com/repos/clangd/clangd/releases/latest \
-			|  grep browser_download_url \
-			|  grep linux\
-			|  cut -d '"' -f 4
-		)
-		echo "$CLANGD_URL"
 		wget -O clangd.zip "$CLANGD_URL"
 		unzip clangd.zip -d ./clangd
-		find "${STORE_PATH}/clangd/" -wholename "bin/clangd$" -exec ln -s {} ./bin/. ';' ;
+		find "${STORE_PATH}/clangd/" -wholename "*bin/clangd*" -exec ln -s {} ./bin/. ';' ;
 		rm clangd.zip
 	fi
 fi
