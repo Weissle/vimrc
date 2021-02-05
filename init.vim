@@ -34,6 +34,7 @@ call plug#end()
 " ---------coc plugin-------------
 "let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-clangd','coc-python','coc-highlight']
 let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-highlight','coc-pyright','coc-tabnine','coc-xml','coc-yaml','coc-clangd']
+let g:coc_node_path='~/.local/myvim/bin/node'
 "  ----------------------------
 " -------- enable rainbow --------
 let g:rainbow_active = 1
@@ -108,7 +109,8 @@ inoremap jj <Esc>
 
 " 函数跳转
 map <c-]> g<c-]>
-inoremap oo <Esc>o
+"inoremap oo <Esc>o
+inoremap \nn <ESC>o
 inoremap OO <Esc>O
 inoremap AA <Esc>A
 inoremap II <Esc>I
@@ -116,14 +118,15 @@ inoremap <C-h> <C-O>h
 inoremap <C-j> <C-O>j
 inoremap <C-k> <C-O>k
 inoremap <C-l> <ESC>la
+
 " 取消搜索的高亮（一次）
 nnoremap <F3> :noh<CR>
+nmap ycp yy\ccp
 "--------------hightlight current words
 let g:vim_current_word#highlight_current_word = 0
 "---------------------------------------------------------------------------
 
 "-----------------------other -------------------------------------------------
-inoremap \nn <ESC>o
 "nnoremap <C-'> o<ESC>
 "------------------------------------------------------------------------
 

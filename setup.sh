@@ -1,69 +1,95 @@
+#!/bin/bash
 echo "This script is for neovim and work well on ubuntu, maybe it can work as well as other linux system."
+
+STORE_PATH_BASE=.local/myvim
+STORE_PATH="$HOME/$STORE_PATH_BASE"
+NODEJS_URL="https://npm.taobao.org/mirrors/node/v14.15.4/node-v14.15.4-linux-x64.tar.xz"
+FORCE_CLANGD=false
+FORCE_NODEJS=false
+QUIET=false
+
+Echo(){
+	if [ "$QUIET" = false ] ; then
+		echo $@
+	fi
+}
+
+check_software(){
+	if ! type "$1" > /dev/null; then
+		if [ "$2" = true ]; then
+			echo "You have not install $1 and it is necessary. Please install it and rerun this script."
+			exit 1
+		else
+			echo "You have not install $1 and the installation may fail."
+		fi
+	fi
+}
+
+TEMP_OPT=`getopt -o q --long clangd,nodejs \
+			-n "test.sh" -- "$@"`
+
+if [ $? != 0 ]; then
+	echo "Error when parsing arguments.";
+	exit 1;
+fi
+eval set -- "$TEMP_OPT"
+while true ; do
+	case "$1" in
+		-q) QUIET=true ; shift ;;
+		--clangd) FORCE_CLANGD=true ; shift ;;
+		--nodejs) FORCE_NODEJS=true ; shift ;;
+		--) shift ; break ;;
+		*) echo "Unknown option" ; exit 1 ;;
+	esac
+done
+
+check_software "nvim" true
 
 mkdir -p ~/.local/share/nvim/site/autoload/
 cp ./other/plug.vim  ~/.local/share/nvim/site/autoload/plug.vim
 nvim -es -u init.vim -i NONE -c "PlugInstall" -c "qa"
 
-LACK_SOFTWARE=false
-if ! type "unzip" > /dev/null; then
-	echo "You should install unzip"
-	LACK_SOFTWARE=true
-fi
-if ! type "curl" > /dev/null; then
-	echo "You should install curl"
-	LACK_SOFTWARE=true
-fi
-if ! type "wget" > /dev/null; then
-	echo "You should install wget"
-	LACK_SOFTWARE=true
-fi
-if ! type "git" > /dev/null; then
-	echo "You should install git"
-	LACK_SOFTWARE=true
-fi
-if $LACK_SOFTWARE ; then
-	echo "prerequisites are not satisfied"
-	exit 1
-fi
-STORE_PATH=~/.local/myvim
-mkdir ${STORE_PATH}/bin -p
-cd ${STORE_PATH}
+
+
+check_software "git"
+check_software "unzip"
+check_software "curl"
+check_software "wget"
+
+
+mkdir "${STORE_PATH}/bin" -p
+cd "${STORE_PATH}" || exit 1
 
 if [ ! -f "${STORE_PATH}/bin/clangd" ]; then
-	if [ "$(which clangd)" != "" ]; then
-		ln -s $(which clangd) ~/.local/myvim/bin/clangd
+	if [ -n "$(which clangd)" ] && [ "$FORCE_CLANGD" == false ]; then
+		ln -s "$(which clangd)" ~/.local/myvim/bin/clangd
 	else
 		echo "Installing clangd"
 		CLANGD_URL=$(curl -s https://api.github.com/repos/clangd/clangd/releases/latest \
-				|  grep browser_download_url \
-				|  grep linux\
-				|  cut -d '"' -f 4
+			|  grep browser_download_url \
+			|  grep linux\
+			|  cut -d '"' -f 4
 		)
-		echo $CLANGD_URL
-		wget -O clangd.zip $CLANGD_URL
+		echo "$CLANGD_URL"
+		wget -O clangd.zip "$CLANGD_URL"
 		unzip clangd.zip -d ./clangd
-		CLANGD_BINS=$(find ${STORE_PATH}/clangd/ | grep "bin/clangd")
-		ln -s $CLANGD_BINS ${STORE_PATH}/bin/.
+		find "${STORE_PATH}/clangd/" -wholename "bin/clangd$" -exec ln -s {} ./bin/. ';' ;
+		rm clangd.zip
 	fi
 fi
 
-if [ ! -f "${STORE_PATH}/bin/node" -o ! -f "${STORE_PATH}/bin/npm" ]; then
-	if [ $(which npm) != "" -a $(which node) != ""  ]; then
-		ln -s $(which npm) ~/.local/myvim/bin/npm
-		ln -s $(which node) ~/.local/myvim/bin/node
+if [ ! -f "${STORE_PATH}/bin/node" ] ||  [ ! -f "${STORE_PATH}/bin/npm" ] ; then
+	if [ -n "$(which npm)" ] && [ -n "$(which node)" ] && [ $FORCE_NODEJS == false ]; then
+		ln -s "$(which npm)" "${STORE_PATH}/bin/npm"
+		ln -s "$(which node)" "${STORE_PATH}/bin/node"
 	else
 		echo "Installing nodejs"
-		wget -O node.tar.xz https://npm.taobao.org/mirrors/node/v14.15.4/node-v14.15.4-linux-x64.tar.xz
+		wget -O node.tar.xz $NODEJS_URL
 		mkdir node -p
 		tar -Jxf node.tar.xz -C ./node
-		NODE_BINS=$(find ${STORE_PATH}/node/ | grep "x64/bin/")
-		ln -s $NODE_BINS ${STORE_PATH}/bin/.
+		find "${STORE_PATH}/node/" -wholename "*x64/bin/n*" -exec ln -s {} ./bin/. ';' ;
+		rm node.tar.xz
 	fi
 fi
-USER_NAME=$(whoami)
-echo $USER_NAME
-if [ "$USER_NAME" !=  "root" ] ; then
-	echo "export PATH=\"\$PATH:/home/$USER_NAME/.local/myvim/bin\"" >> ~/.bashrc
-else
-	echo "export PATH=\"\$PATH:/root/.local/myvim/bin\"" >> ~/.bashrc
-fi
+
+echo "export PATH=\"\$PATH:$STORE_PATH/bin\"" >> ~/.bashrc
