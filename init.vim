@@ -7,11 +7,18 @@ set ignorecase smartcase
 set wrapscan
 set tabstop=4
 set shiftwidth=4
-set nobackup
-set nowritebackup
 set clipboard+=unnamedplus
 set ff=unix
 set cursorline
+autocmd FileType json,markdown let g:indentLine_conceallevel=0
+"------------ coc.nvim recommand --------------------
+set hidden
+set nobackup
+set nowritebackup
+set updatetime=300
+set shortmess+=c
+
+"---------------------------------------
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'Yggdroot/indentLine'
@@ -27,6 +34,10 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'mhinz/vim-startify'
+
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'  }
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 call plug#end()
 " ---------coc plugin-------------
 let g:coc_node_path='~/.local/myvim/bin/node'
@@ -93,4 +104,16 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
-
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+"--------------for markdown ----------------
+let g:vim_markdown_math = 1
+let g:vim_markdown_folding_disabled = 1
+let g:mkdp_open_to_the_world = 1
+let g:vim_markdown_conceal = 0
+let g:tex_conceal = ""
+let g:vim_markdown_math = 1
+let g:vim_markdown_conceal_code_blocks = 0
+autocmd FileType markdown nmap <C-s> <Plug>MarkdownPreview
+autocmd FileType markdown nmap <C-d> <Plug>MarkdownPreviewStop
