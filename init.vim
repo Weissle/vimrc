@@ -35,9 +35,14 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'mhinz/vim-startify'
 
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'  }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
+"--------------- For markdown --------------------------------
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'  }
+"----------------------------------------------------------
 call plug#end()
 " ---------coc plugin-------------
 let g:coc_node_path='~/.local/myvim/bin/node'
@@ -55,7 +60,7 @@ set bg=dark
 "----------------------------------------
 "------------auto-pairs
 "
-let g:AutoPairs={'(':')', '[':']',"'":"'",'"':'"', "`":"`", '```':'`````', '"""':'"""""', "'''":"'''''"}
+"let g:AutoPairs={'(':')', '[':']',"'":"'",'"':'"', "`":"`", '```':'`````', '"""':'"""', "'''":"'''"}
 let g:AutoPairsMapCh = 0
 "----------------------------------------
 
@@ -70,7 +75,7 @@ inoremap <expr> <A-j> ((pumvisible())? ("\<C-n>"):(""))
 inoremap <expr> \ ((pumvisible())? ("\<C-e>"):("\\"))
 inoremap <expr> <TAB> ((pumvisible())? ("\<C-y>"):("\<TAB>"))
 inoremap <expr> <Enter> ((pumvisible())? ("\<C-e>\<Enter>"):("\<CR>"))
-inoremap { {<Enter>}<ESC>O
+inoremap {<Enter> {<Enter>}<ESC>O
 
 "---------------------------------------------------------------------------
 
@@ -93,7 +98,6 @@ inoremap <C-h> <C-O>h
 inoremap <C-j> <C-O>j
 inoremap <C-k> <C-O>k
 inoremap <C-l> <ESC>la
-
 " 取消搜索的高亮（一次）
 nnoremap <F3> :noh<CR>
 nmap ycp yy\ccp
@@ -108,6 +112,7 @@ nnoremap <silent> K :call <SID>show_documentation()<CR>
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 "--------------for markdown ----------------
+let g:mkdp_auto_close = 0
 let g:vim_markdown_math = 1
 let g:vim_markdown_folding_disabled = 1
 let g:mkdp_open_to_the_world = 1
@@ -117,3 +122,12 @@ let g:vim_markdown_math = 1
 let g:vim_markdown_conceal_code_blocks = 0
 autocmd FileType markdown nmap <C-s> <Plug>MarkdownPreview
 autocmd FileType markdown nmap <C-d> <Plug>MarkdownPreviewStop
+autocmd FileType markdown inoremap <C-b> ****<Esc>hi
+autocmd FileType markdown nmap <F9> :s/$/<Space><Space>/g<CR>:noh<CR>
+autocmd FileType markdown vmap <F9> :s/$/<Space><Space>/g<CR>:noh<CR>
+
+"------------- for snippets -----------------
+let g:UltiSnipsSnippetDirectories=[$HOME.'.vim/plugged/vim-snippets/UltiSnips',$HOME.'.vim/plugged/vim-snippets/snippets']
+let g:UltiSnipsExpandTrigger="<C-g>"
+let g:UltiSnipsEditSplit="vertical"
+"---------------------------------------------------
