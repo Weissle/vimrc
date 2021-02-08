@@ -37,7 +37,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'mhinz/vim-startify'
 
-"Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 "--------------- For markdown --------------------------------
@@ -47,9 +47,11 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'  }
 "----------------------------------------------------------
 call plug#end()
 " ---------coc plugin-------------
-let g:coc_node_path='~/.local/myvim/bin/node'
 "let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-highlight','coc-pyright','coc-tabnine','coc-xml','coc-yaml','coc-clangd']
-let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-highlight','coc-pyright','coc-tabnine','coc-xml','coc-yaml','coc-clangd','coc-snippets']
+let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-highlight','coc-pyright','coc-tabnine','coc-xml','coc-yaml','coc-clangd']
+
+inoremap <silent><expr> <c-\> pumvisible() ? ("\<C-e>"):("\\")
+
 "  ----------------------------
 " -------- enable rainbow --------
 let g:rainbow_active = 1
@@ -122,7 +124,11 @@ let g:vim_markdown_math = 1
 let g:vim_markdown_conceal_code_blocks = 0
 autocmd FileType markdown nmap <C-s> <Plug>MarkdownPreview
 autocmd FileType markdown nmap <C-d> <Plug>MarkdownPreviewStop
-autocmd FileType markdown inoremap <C-b> ****<Esc>hi
 autocmd FileType markdown nmap <F9> :s/$/<Space><Space>/g<CR>:noh<CR>
 autocmd FileType markdown vmap <F9> :s/$/<Space><Space>/g<CR>:noh<CR>
+
+"------------------------------ ultisnips --------------------------------
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsEditSplit="vertical"
+
 

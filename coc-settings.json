@@ -1,11 +1,6 @@
 {
 	"suggest.noselect": false,
 	"clangd.path": "clangd",
-	"npm.binPath": "$HOME/.local/myvim/bin/npm",
-	"snippets.ultisnips.directories": [
-		"$HOME/.vim/plugged/vim-snippets/UltiSnips",
-		"$HOME/.vim/plugged/vim-snippets/snippets"
-	],
 	"suggest.maxCompleteItemCount": 20
 }
 
