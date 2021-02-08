@@ -61,30 +61,23 @@ check_software "wget"
 mkdir "${STORE_PATH}/bin" -p
 cd "${STORE_PATH}" || exit 1
 
-if [ ! -f "${STORE_PATH}/bin/clangd" ]; then
-	if [ -n "$(which clangd)" ] && [ "$FORCE_CLANGD" == false ]; then
-		ln -s "$(which clangd)" ~/.local/myvim/bin/clangd
-	else
-		echo "Installing clangd"
-		wget -O clangd.zip "$CLANGD_URL"
-		unzip clangd.zip -d ./clangd
-		find "${STORE_PATH}/clangd/" -wholename "*bin/clangd*" -exec ln -s {} ./bin/. ';' ;
-		rm clangd.zip
-	fi
+if [ -n "$(which clangd)" ]; then
+	echo "Installing clangd"
+	wget -O clangd.zip "$CLANGD_URL"
+	unzip clangd.zip -d ./clangd
+	find "${STORE_PATH}/clangd/" -wholename "*bin/clangd*" -exec ln -s {} ./bin/. ';' ;
+	rm clangd.zip
 fi
 
-if [ ! -f "${STORE_PATH}/bin/node" ] ||  [ ! -f "${STORE_PATH}/bin/npm" ] ; then
-	if [ -n "$(which npm)" ] && [ -n "$(which node)" ] && [ $FORCE_NODEJS == false ]; then
-		ln -s "$(which npm)" "${STORE_PATH}/bin/npm"
-		ln -s "$(which node)" "${STORE_PATH}/bin/node"
-	else
-		echo "Installing nodejs"
-		wget -O node.tar.xz $NODEJS_URL
-		mkdir node -p
-		tar -Jxf node.tar.xz -C ./node
-		find "${STORE_PATH}/node/" -wholename "*x64/bin/n*" -exec ln -s {} ./bin/. ';' ;
-		rm node.tar.xz
-	fi
+if  [ -n "$(which npm)" ] || [ -n "$(which node)" ]; then
+	echo "Installing nodejs"
+	wget -O node.tar.xz $NODEJS_URL
+	mkdir node -p
+	tar -Jxf node.tar.xz -C ./node
+	find "${STORE_PATH}/node/" -wholename "*x64/bin/n*" -exec ln -s {} ./bin/. ';' ;
+	rm node.tar.xz
 fi
-
-echo "export PATH=\"\$PATH:$STORE_PATH/bin\"" >> ~/.bashrc
+PATH_STR="export PATH=\"\$PATH:$STORE_PATH/bin\"" 
+if [ -n "$(cat ~/.bashrc | grep "$PATH_STR")" ] ; then
+	echo "PATH_STR">> ~/.bashrc
+fi
