@@ -41,9 +41,9 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 "--------------- For markdown --------------------------------
-Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'  }
+Plug 'godlygeek/tabular', { 'for': 'markdown' }
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'iamcco/markdown-preview.nvim', { 'for': 'markdown' ,  'do': 'cd app && npm install'  }
 "----------------------------------------------------------
 call plug#end()
 " ---------coc plugin-------------
@@ -57,11 +57,11 @@ inoremap <silent><expr> <c-\> pumvisible() ? ("\<C-e>"):("\\")
 let g:rainbow_active = 1
 " -------------------------------
 " ------------ color scheme --------
-set termguicolors
+"set termguicolors
 colorscheme gruvbox
 "colorscheme dracula
 let g:gruvbox_contrast_light="medium"
-set bg=dark
+"set bg=dark
 "----------------------------------------
 "------------auto-pairs
 "
@@ -105,6 +105,8 @@ nnoremap <F3> :noh<CR>
 nmap ycp yy\ccp
 "--------------hightlight current words
 let g:vim_current_word#highlight_current_word = 0
+hi CurrentWordTwins ctermbg=237
+hi CurrentWordTwins guibg=#606060
 "---------------------------------------------------------------------------
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
@@ -126,9 +128,9 @@ autocmd FileType markdown nmap <C-s> <Plug>MarkdownPreview
 autocmd FileType markdown nmap <C-d> <Plug>MarkdownPreviewStop
 autocmd FileType markdown nmap <F9> :s/$/<Space><Space>/g<CR>:noh<CR>
 autocmd FileType markdown vmap <F9> :s/$/<Space><Space>/g<CR>:noh<CR>
+autocmd FileType markdown inoremap <c-b> ****<Esc>hi
+autocmd FileType markdown inoremap !sp &emsp;&emsp;
 
 "------------------------------ ultisnips --------------------------------
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsEditSplit="vertical"
-
-
