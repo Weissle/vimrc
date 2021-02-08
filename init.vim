@@ -9,6 +9,8 @@ set tabstop=4
 set shiftwidth=4
 set clipboard+=unnamedplus
 set ff=unix
+set termencoding=utf-8
+set encoding=utf-8
 set cursorline
 autocmd FileType json,markdown let g:indentLine_conceallevel=0
 "------------ coc.nvim recommand --------------------
@@ -35,7 +37,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'mhinz/vim-startify'
 
-Plug 'SirVer/ultisnips'
+"Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
 "--------------- For markdown --------------------------------
@@ -46,7 +48,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npm install'  }
 call plug#end()
 " ---------coc plugin-------------
 let g:coc_node_path='~/.local/myvim/bin/node'
-let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-highlight','coc-pyright','coc-tabnine','coc-xml','coc-yaml','coc-clangd']
+"let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-highlight','coc-pyright','coc-tabnine','coc-xml','coc-yaml','coc-clangd']
+let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-highlight','coc-pyright','coc-tabnine','coc-xml','coc-yaml','coc-clangd','coc-snippets']
 "  ----------------------------
 " -------- enable rainbow --------
 let g:rainbow_active = 1
@@ -60,7 +63,6 @@ set bg=dark
 "----------------------------------------
 "------------auto-pairs
 "
-"let g:AutoPairs={'(':')', '[':']',"'":"'",'"':'"', "`":"`", '```':'`````', '"""':'"""', "'''":"'''"}
 let g:AutoPairsMapCh = 0
 "----------------------------------------
 
@@ -87,8 +89,6 @@ let g:NERDTreeWinPos = "right"
 " jj 退出 insert mode
 inoremap jj <Esc>
 
-" 函数跳转
-map <c-]> g<c-]>
 "inoremap oo <Esc>o
 inoremap \nn <ESC>o
 inoremap OO <Esc>O
@@ -126,8 +126,3 @@ autocmd FileType markdown inoremap <C-b> ****<Esc>hi
 autocmd FileType markdown nmap <F9> :s/$/<Space><Space>/g<CR>:noh<CR>
 autocmd FileType markdown vmap <F9> :s/$/<Space><Space>/g<CR>:noh<CR>
 
-"------------- for snippets -----------------
-let g:UltiSnipsSnippetDirectories=[$HOME.'.vim/plugged/vim-snippets/UltiSnips',$HOME.'.vim/plugged/vim-snippets/snippets']
-let g:UltiSnipsExpandTrigger="<C-g>"
-let g:UltiSnipsEditSplit="vertical"
-"---------------------------------------------------
