@@ -117,7 +117,6 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 "--------------for markdown ----------------
 let g:mkdp_auto_close = 0
-let g:vim_markdown_math = 1
 let g:vim_markdown_folding_disabled = 1
 let g:mkdp_open_to_the_world = 1
 let g:vim_markdown_conceal = 0
@@ -128,9 +127,9 @@ autocmd FileType markdown nmap <C-s> <Plug>MarkdownPreview
 autocmd FileType markdown nmap <C-d> <Plug>MarkdownPreviewStop
 autocmd FileType markdown nmap <F9> :s/$/<Space><Space>/g<CR>:noh<CR>
 autocmd FileType markdown vmap <F9> :s/$/<Space><Space>/g<CR>:noh<CR>
-autocmd FileType markdown inoremap <c-b> ****<Esc>hi
-autocmd FileType markdown inoremap !sp &emsp;&emsp;
 
 "------------------------------ ultisnips --------------------------------
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsEditSplit="vertical"
+
+"------------------------------------------------------
