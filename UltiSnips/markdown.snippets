@@ -1,9 +1,9 @@
 
-snippet "![bB]" "bold" ir
-**${1}**$0
+snippet bd "bold" i
+**${1:${VISUAL:text}}**$0
 endsnippet
 
-snippet "![bB]e" "bold" ir
+snippet bde "bold" i
 **$1** ($2) $0
 endsnippet
 
@@ -13,4 +13,8 @@ endsnippet
 
 snippet !sp "indent two word" bA
 &emsp;&emsp;
+endsnippet
+
+snippet vb "bold text" i
+**${VISUAL:default BOLD}**
 endsnippet
