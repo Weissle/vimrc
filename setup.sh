@@ -61,7 +61,7 @@ check_software "wget"
 mkdir "${STORE_PATH}/bin" -p
 cd "${STORE_PATH}" || exit 1
 
-if [ -n "$(which clangd)" ]; then
+if [ -z "$(which clangd)" ]; then
 	echo "Installing clangd"
 	wget -O clangd.zip "$CLANGD_URL"
 	unzip clangd.zip -d ./clangd
@@ -69,7 +69,7 @@ if [ -n "$(which clangd)" ]; then
 	rm clangd.zip
 fi
 
-if  [ -n "$(which npm)" ] || [ -n "$(which node)" ]; then
+if  [ -z "$(which npm)" ] || [ -z "$(which node)" ]; then
 	echo "Installing nodejs"
 	wget -O node.tar.xz $NODEJS_URL
 	mkdir node -p
@@ -78,6 +78,6 @@ if  [ -n "$(which npm)" ] || [ -n "$(which node)" ]; then
 	rm node.tar.xz
 fi
 PATH_STR="export PATH=\"\$PATH:$STORE_PATH/bin\"" 
-if [ -n "$(cat ~/.bashrc | grep "$PATH_STR")" ] ; then
+if [ -z "$(cat ~/.bashrc | grep "$PATH_STR")" ] ; then
 	echo "PATH_STR">> ~/.bashrc
 fi
