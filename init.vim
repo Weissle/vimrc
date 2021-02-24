@@ -40,6 +40,9 @@ Plug 'mhinz/vim-startify'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
+
+Plug 'skywind3000/asynctasks.vim'
+Plug 'skywind3000/asyncrun.vim'
 "--------------- For markdown --------------------------------
 Plug 'godlygeek/tabular', { 'for': 'markdown' }
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
@@ -74,8 +77,8 @@ let g:AutoPairsMapCh = 0
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " 自动补全快捷键修改
-"inoremap <expr> <A-k> ((pumvisible())? ("\<C-p>"):(""))
-"inoremap <expr> <A-j> ((pumvisible())? ("\<C-n>"):(""))
+inoremap <expr> <A-k> ((pumvisible())? ("\<C-p>"):(""))
+inoremap <expr> <A-j> ((pumvisible())? ("\<C-n>"):(""))
 inoremap <expr> \ ((pumvisible())? ("\<C-e>"):("\\"))
 inoremap <expr> <TAB> ((pumvisible())? ("\<C-y>"):("\<TAB>"))
 inoremap <expr> <Enter> ((pumvisible())? ("\<C-e>\<Enter>"):("\<CR>"))
@@ -93,11 +96,12 @@ inoremap jj <Esc>
 "inoremap oo <Esc>o
 "inoremap \nn <ESC>o
 inoremap OO <Esc>O
-inoremap AA <Esc>A
+"inoremap AA <Esc>A
+inoremap <C-a> <C-o>A
 inoremap II <Esc>I
 inoremap <C-h> <left>
-inoremap <C-j> <down>
-inoremap <C-k> <up>
+inoremap <C-j> <C-o>j
+inoremap <C-k> <C-o>k
 inoremap <C-l> <right>
 " 取消搜索的高亮（一次）
 nnoremap <F3> :noh<CR>
@@ -133,3 +137,8 @@ let g:UltiSnipsEditSplit="vertical"
 
 "------------------------------------------------------
 
+"------------------For asynctasks----------------
+let g:asyncrun_open = 6
+noremap <silent><f5> :AsyncTask run<cr>
+noremap <silent><f6> :AsyncTask build<cr>
+"------------------------------------------------------

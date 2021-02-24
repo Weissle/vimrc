@@ -79,5 +79,5 @@ if  [ -z "$(which npm)" ] || [ -z "$(which node)" ]; then
 fi
 PATH_STR="export PATH=\"\$PATH:$STORE_PATH/bin\"" 
 if [ -z "$(cat ~/.bashrc | grep "$PATH_STR")" ] ; then
-	echo "PATH_STR">> ~/.bashrc
+	echo "$PATH_STR">> ~/.bashrc
 fi
