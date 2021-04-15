@@ -146,4 +146,6 @@ let g:UltiSnipsEditSplit="vertical"
 let g:asyncrun_open = 6
 noremap <silent><f5> :AsyncTask file-run<cr>
 noremap <silent><f6> :AsyncTask file-build<cr>
+noremap <silent><f7> :AsyncTask project-run<cr>
+noremap <silent><f8> :AsyncTask project-build<cr>
 "------------------------------------------------------
