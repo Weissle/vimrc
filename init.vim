@@ -49,11 +49,16 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 Plug 'iamcco/markdown-preview.nvim', { 'for': 'markdown' ,  'do': 'cd app && npm install'  }
 "----------------------------------------------------------
 call plug#end()
+
+nnoremap <SPACE> <Nop>
+let mapleader = " "
+
 " ---------coc plugin-------------
 "let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-highlight','coc-pyright','coc-tabnine','coc-xml','coc-yaml','coc-clangd']
 let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-highlight','coc-pyright','coc-tabnine','coc-xml','coc-yaml','coc-clangd']
 
 inoremap <silent><expr> <c-\> pumvisible() ? ("\<C-e>"):("\\")
+nmap <leader>rn <Plug>(coc-rename)
 
 "  ----------------------------
 " -------- enable rainbow --------
@@ -79,7 +84,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " 自动补全快捷键修改
 inoremap <expr> <A-k> ((pumvisible())? ("\<C-p>"):(""))
 inoremap <expr> <A-j> ((pumvisible())? ("\<C-n>"):(""))
-inoremap <expr> \ ((pumvisible())? ("\<C-e>"):("\\"))
+"inoremap <expr> \ ((pumvisible())? ("\<C-e>"):("\\"))
 inoremap <expr> <TAB> ((pumvisible())? ("\<C-y>"):("\<TAB>"))
 inoremap <expr> <Enter> ((pumvisible())? ("\<C-e>\<Enter>"):("\<CR>"))
 inoremap {<Enter> {<Enter>}<ESC>O
@@ -105,7 +110,7 @@ inoremap <C-k> <C-o>k
 inoremap <C-l> <right>
 " 取消搜索的高亮（一次）
 nnoremap <F3> :noh<CR>
-nmap ycp yy\ccp
+nmap ycp yy<leader>ccp
 "--------------hightlight current words
 let g:vim_current_word#highlight_current_word = 0
 hi CurrentWordTwins ctermbg=237
@@ -139,6 +144,6 @@ let g:UltiSnipsEditSplit="vertical"
 
 "------------------For asynctasks----------------
 let g:asyncrun_open = 6
-noremap <silent><f5> :AsyncTask run<cr>
-noremap <silent><f6> :AsyncTask build<cr>
+noremap <silent><f5> :AsyncTask file-run<cr>
+noremap <silent><f6> :AsyncTask file-build<cr>
 "------------------------------------------------------
