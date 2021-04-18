@@ -23,24 +23,26 @@ set shortmess+=c
 "---------------------------------------
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch':'release'}
+"------------------- Outlook -------------------
 Plug 'Yggdroot/indentLine'
 Plug 'vim-airline/vim-airline'
-Plug 'scrooloose/nerdtree'
 Plug 'luochen1990/rainbow'
-Plug 'scrooloose/nerdcommenter'
-Plug 'dominikduda/vim_current_word'
 Plug 'morhetz/gruvbox'
+Plug 'dominikduda/vim_current_word'
+"------------------------------------------------
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
 "Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'mhinz/vim-startify'
-
+Plug 'easymotion/vim-easymotion'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 
-
+"------------------ For asynctasks ---------------------
 Plug 'skywind3000/asynctasks.vim'
 Plug 'skywind3000/asyncrun.vim'
 "--------------- For markdown --------------------------------
@@ -140,6 +142,7 @@ autocmd FileType markdown vmap <F9> :s/$/<Space><Space>/g<CR>:noh<CR>
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsEditSplit="vertical"
 
+map <Leader> <Plug>(easymotion-prefix)
 "------------------------------------------------------
 
 "------------------For asynctasks----------------
