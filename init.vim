@@ -152,3 +152,4 @@ noremap <silent><f6> :AsyncTask file-build<cr>
 noremap <silent><f7> :AsyncTask project-run<cr>
 noremap <silent><f8> :AsyncTask project-build<cr>
 "------------------------------------------------------
+au! BufNewFile,BufRead *.launch setf xml
