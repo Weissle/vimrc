@@ -143,7 +143,7 @@ autocmd FileType markdown vmap <F9> :s/$/<Space><Space>/g<CR>:noh<CR>
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsEditSplit="vertical"
 
-map <Leader> <Plug>(easymotion-prefix)
+map <Leader><Leader> <Plug>(easymotion-prefix)
 "------------------------------------------------------
 
 "------------------For asynctasks----------------
