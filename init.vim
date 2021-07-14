@@ -103,10 +103,10 @@ inoremap jj <Esc>
 
 "inoremap oo <Esc>o
 "inoremap \nn <ESC>o
-inoremap OO <Esc>O
+"inoremap OO <Esc>O
 "inoremap AA <Esc>A
 inoremap <C-a> <C-o>A
-inoremap II <Esc>I
+"inoremap II <Esc>I
 inoremap <C-h> <left>
 inoremap <C-j> <C-o>j
 inoremap <C-k> <C-o>k
@@ -143,7 +143,7 @@ autocmd FileType markdown vmap <F9> :s/$/<Space><Space>/g<CR>:noh<CR>
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsEditSplit="vertical"
 
-map <Leader><Leader> <Plug>(easymotion-prefix)
+map <Leader> <Plug>(easymotion-prefix)
 "------------------------------------------------------
 
 "------------------For asynctasks----------------
