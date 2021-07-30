@@ -62,7 +62,8 @@ let g:coc_global_extensions = ['coc-json','coc-tsserver','coc-highlight','coc-py
 
 inoremap <silent><expr> <c-\> pumvisible() ? ("\<C-e>"):("\\")
 nmap <leader>rn <Plug>(coc-rename)
-
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
 "  ----------------------------
 " -------- enable rainbow --------
 let g:rainbow_active = 1
