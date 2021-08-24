@@ -22,6 +22,9 @@ set shortmess+=c
 
 "---------------------------------------
 call plug#begin('~/.vim/plugged')
+
+let g:plug_url_format = 'https://github.com.cnpmjs.org/%s.git'
+
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 "------------------- Outlook -------------------
 Plug 'Yggdroot/indentLine'
@@ -157,9 +160,9 @@ noremap <silent><f8> :AsyncTask project-build<cr>
 au! BufNewFile,BufRead *.launch setf xml
 
 "-----------------------------LeaderF--------------------------
-let g:Lf_ShortcutF = '<c-p>'
-let g:Lf_WorkingDirectoryMode = 'AF'
-let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
+"let g:Lf_ShortcutF = '<c-p>'
+"let g:Lf_WorkingDirectoryMode = 'AF'
+"let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
 "
 "
 "
