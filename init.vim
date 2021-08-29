@@ -158,13 +158,3 @@ noremap <silent><f7> :AsyncTask project-run<cr>
 noremap <silent><f8> :AsyncTask project-build<cr>
 "------------------------------------------------------
 au! BufNewFile,BufRead *.launch setf xml
-
-"-----------------------------LeaderF--------------------------
-"let g:Lf_ShortcutF = '<c-p>'
-"let g:Lf_WorkingDirectoryMode = 'AF'
-"let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.project', '.root']
-"
-"
-"
-"
-"---------------------------------------------------------------
